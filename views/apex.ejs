@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>APEX レジェンド一覧</title>
+</head>
+<body>
+  <h2>APEX レジェンド一覧</h2>
+  <table border="1">
+    <tr><th>名前</th><th>クラス</th></tr>
+      <% let number = 0 %>
+      <% for( let row of data ) { %>
+        <tr><td><a href="/apex/<%= number %>"><%= row.name %></a></td>
+          <td><%= row.class %></td></tr>
+        <% number += 1 %>
+      <% } %>
+  </table>
+  <br>
+  <a href="/apex/create">追加</a>
+</body>
+</html>
+

@@ -8,6 +8,7 @@
 let apexData = [
   { id: 1, 
     name: "キャラ名", 
+    class: "クラス名",
     passive: "パッシブ",
     senzyutu: "戦術",
     ultimate: "アルティメット",
