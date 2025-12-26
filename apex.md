@@ -23,6 +23,6 @@ stateDiagram-v2
 
 
     /views/apex_delete.ejs --> /apex/delete/：number:はい
-    /apex/delete/：number --> /apex
+    /apex/delete/：number --> /apex:リダイレクト
 
 ```
