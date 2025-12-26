@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>日記一覧</title>
+</head>
+<body>
+  <h2>日記一覧</h2>
+  <table border="1">
+    <tr>
+      <th>日付</th>
+      <th>タイトル</th>
+    </tr>
+    <% let number = 0 %>
+    <% for (let row of data) { %>
+      <tr>
+        <td><%= row.day %></td>
+        <td>
+          <a href="/nikki/<%= number %>"><%= row.title %></a>
+        </td>
+      </tr>
+      <% number += 1 %>
+    <% } %>
+  </table>
+  <br>
+  <a href="/nikki/create">新規作成</a>
+</body>
+</html>

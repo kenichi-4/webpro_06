@@ -1,0 +1,15 @@
+<!Doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title><%= data.title %> の詳細</title>
+</head>
+<body>
+<h1><%= data.title %></h1>
+<p>日付：<%= data.day %></p>
+<p>内容：<%= data.naiyo %></p>
+<a href="/nikki">一覧へ戻る</a>
+<a href="/nikki/edit/<%= id %>">編集</a>
+<a href="/nikki/check/<%= id %>">削除</a>
+</body>
+</html>

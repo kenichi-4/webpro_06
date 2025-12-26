@@ -346,7 +346,57 @@ app.post("/maikura/update/:number", (req, res) => {
 res.render("maikura_detail", { id: number, data: detail });
 });
 
+//日記
+let nikkidata= [  { id: 1, day: "XX月XX日", title: "例",naiyo: "例"},
+];
 
+app.get("/nikki", (req, res) => {
+  res.render("nikki", { data: nikkidata });
+});
+
+app.get("/nikki/create", (req, res) => {
+  res.redirect("/public/nikki_add.html");
+});
+
+app.get("/nikki/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = nikkidata[number];
+  res.render("nikki_detail", { id: number, data: detail });
+});
+
+app.get("/nikki/check/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = nikkidata[number];
+  res.render("nikki_delete", { id: number, data: detail });
+});
+
+app.get("/nikki/delete/:number", (req, res) => {
+  nikkidata.splice(req.params.number, 1);
+  res.redirect("/nikki");
+});
+
+app.post("/nikki", (req, res) => {
+  const id = nikkidata.length + 1;
+  const day = req.body.day;
+  const title = req.body.title;
+  const naiyo = req.body.naiyo;
+  nikkidata.push({id: id,day: day,title: title,naiyo: naiyo});
+  res.render("nikki", { data: nikkidata });
+});
+
+app.get("/nikki/edit/:number", (req, res) => {
+  const number = req.params.number;
+  res.render("nikki_edit", { id: number, data: nikkidata[number] });
+});
+
+app.post("/nikki/update/:number", (req, res) => {
+  const number = req.params.number;
+  nikkidata[number].day = req.body.day;
+  nikkidata[number].title = req.body.title;
+  nikkidata[number].naiyo = req.body.naiyo;
+  const detail = nikkidata[number];
+  res.render("nikki_detail", { id: number, data: detail });
+});
 
 
 
