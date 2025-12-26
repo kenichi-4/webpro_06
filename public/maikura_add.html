@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>マイクラ 敵追加</title>
+</head>
+<body>
+  <h2>マイクラ 敵 新規登録</h2>
+  <form action="/maikura" method="POST">
+    <label>名前:</label> <input type="text" name="name" required><br><br>
+    <label>体力:</label> <input type="text" name="hp" required><br><br>
+    <label>攻撃力:</label> <input type="text" name="kougeki" required><br><br>
+    <label>特徴:</label> <input type="text" name="tokutyou" required><br><br>
+    <input type="submit" value="登録">
+  </form>
+
+  <br>
+  <a href="/maikura">一覧へ戻る</a>
+</body>
+</html>

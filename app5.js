@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require("express");
 const app = express();
 
@@ -263,7 +265,88 @@ res.render("apex_detail", { id: number, data: detail });
 });
 
 
-//
+
+
+let maikuradata= [
+  { id: 1, name: "ゾンビ", hp: "20", kougeki: "3", tokutyou: "夜に出現し、集団で襲ってくる" },
+  { id: 2, name: "スケルトン", hp: "20", kougeki: "2（弓）", tokutyou: "遠距離攻撃を行う" },
+  { id: 3, name: "クリーパー", hp: "20", kougeki: "爆発", tokutyou: "近づくと自爆する" },
+  { id: 4, name: "エンダーマン", hp: "40", kougeki: "7", tokutyou: "瞬間移動し、視線を合わせると敵対する" },
+  { id: 5, name: "クモ", hp: "16", kougeki: "2", tokutyou: "壁を登ることができる" },
+  { id: 6, name: "洞窟グモ", hp: "12", kougeki: "2 + 毒", tokutyou: "攻撃時に毒を付与する" },
+  { id: 7, name: "ウィッチ", hp: "26", kougeki: "ポーション", tokutyou: "回復・耐性ポーションを使用する" },
+  { id: 8, name: "ガスト", hp: "10", kougeki: "火の玉", tokutyou: "空中から火の玉を発射する" },
+  { id: 9, name: "ゾンビピッグマン", hp: "20", kougeki: "5", tokutyou: "攻撃すると集団で敵対する" },
+  { id: 10, name: "ブレイズ", hp: "20", kougeki: "火球", tokutyou: "空中浮遊し炎攻撃を行う" },
+  { id: 11, name: "ウィザースケルトン", hp: "20", kougeki: "5", tokutyou: "攻撃時にウィザー効果を付与" },
+  { id: 12, name: "スライム", hp: "サイズ依存", kougeki: "サイズ依存", tokutyou: "分裂して増える" },
+  { id: 13, name: "マグマキューブ", hp: "サイズ依存", kougeki: "サイズ依存", tokutyou: "溶岩耐性がある" },
+  { id: 14, name: "ファントム", hp: "20", kougeki: "2", tokutyou: "長時間寝ないと出現する" },
+  { id: 15, name: "ピリジャー", hp: "24", kougeki: "クロスボウ", tokutyou: "遠距離攻撃を行う襲撃者" },
+  { id: 16, name: "ヴィンディケーター", hp: "24", kougeki: "9", tokutyou: "斧による高火力近接攻撃" },
+  { id: 17, name: "エヴォーカー", hp: "24", kougeki: "魔法", tokutyou: "ファングとヴェックスを召喚する" },
+  { id: 18, name: "ヴェックス", hp: "14", kougeki: "5", tokutyou: "壁をすり抜けて攻撃する" },
+  { id: 19, name: "ホグリン", hp: "40", kougeki: "6", tokutyou: "強力な突進攻撃を行う" },
+  { id: 20, name: "ピグリンブルート", hp: "50", kougeki: "7", tokutyou: "非常に攻撃的で強力" },
+  { id: 21, name: "ウィザー", hp: "300", kougeki: "爆発", tokutyou: "ボス敵。飛行し爆発攻撃を行う" },
+  { id: 22, name: "エンダードラゴン", hp: "200", kougeki: "突進・ブレス", tokutyou: "エンドのボス。再生クリスタルを持つ" }
+];
+
+
+app.get("/maikura", (req, res) => {
+res.render("maikura", { data: maikuradata });
+});
+
+app.get("/maikura/create", (req, res) => {
+res.redirect("/public/maikura_add.html");
+});
+
+app.get("/maikura/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = maikuradata[ number ];
+res.render("maikura_detail", { id: number, data: detail });
+});
+
+app.get("/maikura/check/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = maikuradata[ number ];
+  res.render("maikura_delete", { id: number, data: detail });
+});
+
+app.get("/maikura/delete/:number", (req, res) => {
+  maikuradata.splice(req.params.number, 1);
+  res.redirect("/maikura");
+});
+
+app.post("/maikura", (req, res) => {
+  const id = maikuradata.length + 1;
+  const name = req.body.name;
+  const hp = req.body.hp;
+  const kougeki = req.body.kougeki;
+  const tokutyou = req.body.tokutyou;
+  maikuradata.push({id: id,name: name,hp: hp,kougeki: kougeki,tokutyou: tokutyou});
+  res.render("maikura", { data: maikuradata });
+});
+
+app.get("/maikura/edit/:number", (req, res) => {
+const number = req.params.number;
+res.render("maikura_edit", { id: number, data: maikuradata[number] });
+});
+
+
+app.post("/maikura/update/:number", (req, res) => {
+  maikuradata[req.params.number].name = req.body.name;
+  maikuradata[req.params.number].hp = req.body.hp;
+  maikuradata[req.params.number].kougeki = req.body.kougeki;
+  maikuradata[req.params.number].tokutyou = req.body.tokutyou;
+  
+  console.log(maikuradata);
+  const number = req.params.number;
+  const detail = maikuradata[ number ];
+res.render("maikura_detail", { id: number, data: detail });
+});
+
+
 
 
 

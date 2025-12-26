@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %> の詳細</title>
+</head>
+<body>
+<h1><%= data.name %></h1>
+<p>体力: <%= data.hp %></p>
+<p>攻撃力: <%= data.kougeki %></p>
+<p>特徴: <%= data.tokutyou %></p>
+<a href="/maikura">一覧へ戻る</a>
+<a href="/maikura/edit/<%= id %>">編集</a>
+<a href="/maikura/check/<%= id %>">削除</a>
+</body>
+</html>

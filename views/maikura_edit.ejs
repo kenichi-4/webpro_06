@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %> の編集</title>
+</head>
+<body>
+  <h2><%= data.name %> の編集</h2>
+  <form action="/maikura/update/<%= id %>" method="POST">
+    <table border="1">
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>名前</td><td><input type="text" name="name" value="<%= data.name %>"></td></tr>
+      <tr><td>体力</td><td><input type="text" name="hp" value="<%= data.hp %>"></td></tr>
+      <tr><td>攻撃力</td><td><input type="text" name="kougeki" value="<%= data.kougeki %>"></td></tr>
+      <tr><td>特徴</td><td><input type="text" name="tokutyou" value="<%= data.tokutyou %>"></td></tr>
+    </table>
+    <br>
+    <input type="submit" value="更新">
+  </form>
+  <br>
+  <a href="/maikura">一覧へ戻る</a>
+</body>
+</html>
